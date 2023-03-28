@@ -27,32 +27,32 @@ play.addEventListener('click',  () =>  {
 })
 
 function pauseMusic(){
-    container.classList.remove('playing')
-    audio.pause()
-    play.classList = "fa-solid fa-play"
+    container.classList.remove('playing');
+    audio.pause();
+    play.classList = "fa-solid fa-play";
 }
 function playMusic(){
-    container.classList.add('playing')
-    play.classList = "fa-solid fa-pause"
-    audio.play()
+    container.classList.add('playing');
+    play.classList = "fa-solid fa-pause";
+    audio.play();
 }
 
 prev.addEventListener('click', () => {
-    prevMusic()
+    prevMusic();
 })
 next.addEventListener('click', () => {
-    nextMusic()
+    nextMusic();
 })
 
 function prevMusic(){
-    player.prev()
-    let music = player.getMusic()
-    displayMusic(music)
-    playMusic()
+    player.prev();
+    let music = player.getMusic();
+    displayMusic(music);
+    playMusic();
 }
 function nextMusic(){
-    player.next()
-    let music = player.getMusic()
-    displayMusic(music)
-    playMusic()
+    player.next();
+    let music = player.getMusic();
+    displayMusic(music);
+    playMusic();
 }
