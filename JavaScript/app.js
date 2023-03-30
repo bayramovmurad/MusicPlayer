@@ -5,6 +5,11 @@ const singer = document.querySelector('#music-details .singer')
 const prev = document.querySelector('#controls #prev')
 const play = document.querySelector('#controls #play')
 const next = document.querySelector('#controls #next')
+const duration = document.querySelector('#duration')
+const currentTime = document.querySelector('#current-time')
+const progressBar = document.querySelector('#progress-bar')
+const volume = document.querySelector('#volume')
+const volumeBar = document.querySelector('#volume-bar')
 
 
 const player = new MusicPlayer(musicList);
@@ -55,4 +60,65 @@ function nextMusic(){
     let music = player.getMusic();
     displayMusic(music);
     playMusic();
+}
+
+function calculateTime(allSeconds){
+    const minute = Math.floor(allSeconds / 60);
+    const second = Math.floor(allSeconds % 60);
+    const uptadeSecond = second < 10 ? `0${second}` : `${second}`;
+    const result = `${minute}:${uptadeSecond}`
+    return result;
+
+}
+
+audio.addEventListener('loadedmetadata', () => {
+     duration.textContent = calculateTime(audio.duration);
+     progressBar.max = Math.floor(audio.duration)
+});
+
+audio.addEventListener('timeupdate', () => {
+    progressBar.value = Math.floor(audio.currentTime);
+    currentTime.textContent = calculateTime(progressBar.value);
+})
+
+progressBar.addEventListener('input', () => {
+    currentTime.textContent = calculateTime(progressBar.value)
+    audio.currentTime = progressBar.value
+})
+
+let soundStatus = "voice";
+
+volumeBar.addEventListener('input', (e) => {
+    const value = e.target.value;
+    audio.volume = value / 100;
+    if(value == 0){
+        audio.muted = true;
+        soundStatus = 'muted';
+        volume.classList = "fa-solid fa-volume-xmark"
+        volumeBar.value = 0;
+    }else{
+        audio.muted = false;
+        soundStatus = "voice"
+        volume.classList = "fa-solid fa-volume-high"
+    }
+})
+
+volume.addEventListener('click', () => {
+    if(soundStatus === "voice"){
+        audio.muted = true;
+        soundStatus = 'muted';
+        volume.classList = "fa-solid fa-volume-xmark"
+        volumeBar.value = 0;
+      
+    }else{
+        audio.muted = false;
+        soundStatus = "voice"
+        volume.classList = "fa-solid fa-volume-high"
+        volumeBar.value = 100;
+    }
+})
+
+if(volumeBar.value === 0){
+    volume.classList = "fa-solid fa-volume-xmark"
+   
 }

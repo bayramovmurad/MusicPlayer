@@ -24,6 +24,20 @@ body {
   font-size: 150%;
 }
 
+#progress-bar {
+  width: 100%;
+}
+
+#progress {
+  margin: 10px;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #controls {
   display: flex;
   justify-content: center;
