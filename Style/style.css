@@ -47,4 +47,9 @@ body {
 
 #controls i {
   font-size: 170%;
+}
+
+li.playing {
+  background: #28b0e2;
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */
