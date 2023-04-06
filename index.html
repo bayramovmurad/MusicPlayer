@@ -7,21 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <title>Music Player</title>
-    <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <img src="" alt="" id="music-image">
         <audio id="audio" src=""></audio>
-        <div id="music-details">
-            <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"
-                class="title"></p>
+        <div id="music-details" class="fs-4 text-white">
+            <p class="title"></p>
             <p class="singer"></p>
         </div>
         <div id="progress">
-            <input type="range" name="" id="progress-bar">
+            <input type="range" name="" id="progress-bar" class="form-range">
             <div class="times">
                 <span id="current-time">
                     0:00
@@ -32,27 +34,24 @@
             </div>
         </div>
         <div id="controls">
-            <div>
-                <i id="prev" class="fa-solid fa-backward-step"></i>
-                <i id="play" class="fa-solid fa-play"></i>
-                <i id="next" class="fa-solid fa-forward-step"></i>
+            <div id="control-music">
+                <i id="prev" class="fa-solid fa-backward-step bg-primary"></i>
+                <i id="play" class="fa-solid fa-play bg-primary"></i>
+                <i id="next" class="fa-solid fa-forward-step bg-primary"></i>
             </div>
+        </div>
+        <div id="control-volList">
             <div>
                 <i id="volume" style="color: white;" class="fa-solid fa-volume-high"></i>
-                <input type="range" name="" id="volume-bar" max="100" value="100">
+                <input type="range" name="" id="volume-bar" class="form-range" max="100" value="100">
+            </div>
+            <div onclick="myFunction()" class="btn btn-primary slm btn-sm" data-bs-toggle="collapse" href="#music-list">
+                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
-        <div class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#music-list">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-        <div id="music-list" class="collapse" >
+        <div id="music-list" class="collapse ">
             <ul class="list-group list-group-flush">
-                <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Bosver -lifufer</span>
-                    <span class="badge bg-primary rounded-pill">
-                        3:40
-                    </span>
-                </li> -->
+
             </ul>
         </div>
     </div>

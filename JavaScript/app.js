@@ -37,11 +37,11 @@ play.addEventListener('click', () => {
 function pauseMusic() {
     container.classList.remove('playing');
     audio.pause();
-    play.classList = "fa-solid fa-play";
+    play.classList = "fa-solid fa-play bg-primary";
 }
 function playMusic() {
     container.classList.add('playing');
-    play.classList = "fa-solid fa-pause";
+    play.classList = "fa-solid fa-pause bg-primary";
     audio.play();
 }
 
@@ -129,10 +129,10 @@ if (volumeBar.value === 0) {
 }
 
 function displayMusicList(list) {
-    for (let i=0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
         let liTag = `
         <li onClick="selectedMusic(this)" li-index='${i}' class="list-group-item d-flex justify-content-between align-items-center">
-        <span>${list[i].getName()}</span>
+        <span class="h5">${list[i].getName()}</span>
         <span id="music-${i}" class="badge bg-primary rounded-pill"></span>
         <audio class="music-${i}" src="mp3/${list[i].file}"></audio>
         </li>
@@ -145,27 +145,32 @@ function displayMusicList(list) {
 
         liAudioTag.addEventListener("loadeddata", () => {
             liAudioDuration.innerText = calculateTime(liAudioTag.duration)
-        }) ;
+        });
 
-        
+
     }
-} 
+}
 
-function selectedMusic(li){
+function selectedMusic(li) {
     player.index = li.getAttribute("li-index");
     displayMusic(player.getMusic());
     playMusic();
     isPlayingNow()
 }
 
-function isPlayingNow(){
-    for(let li of ul.querySelectorAll("li")){
-        if(li.classList.contains("playing")){
+function isPlayingNow() {
+    for (let li of ul.querySelectorAll("li")) {
+        if (li.classList.contains("playing")) {
             li.classList.remove("playing")
-            
+
         }
-        if(li.getAttribute("li-index") == player.index){
+        if (li.getAttribute("li-index") == player.index) {
             li.classList.add("playing")
         }
     }
+}
+
+function myFunction() {
+    const list = document.querySelector(".container").classList;
+    list.toggle("rdys");
 }
