@@ -15,6 +15,7 @@ const ul = document.querySelector('ul')
 
 const player = new MusicPlayer(musicList);
 
+
 window.addEventListener('load', () => {
     let music = player.getMusic();
     displayMusic(music)
@@ -22,11 +23,15 @@ window.addEventListener('load', () => {
     isPlayingNow()
 })
 
+// Information pulled from music.js
+
 function displayMusic(music) {
     title.innerText = music.getName();
     image.src = "img/" + music.img;
     audio.src = "mp3/" + music.file;
 }
+
+// Play function
 
 play.addEventListener('click', () => {
     audio.play()
@@ -34,22 +39,25 @@ play.addEventListener('click', () => {
     isMusicPlay ? pauseMusic() : playMusic();
 })
 
+// pause function
+
 function pauseMusic() {
     container.classList.remove('playing');
     audio.pause();
     play.classList = "fa-solid fa-play bg-primary";
 }
+
+// play function addition
 function playMusic() {
     container.classList.add('playing');
     play.classList = "fa-solid fa-pause bg-primary";
     audio.play();
 }
 
+// prev function
+
 prev.addEventListener('click', () => {
     prevMusic();
-})
-next.addEventListener('click', () => {
-    nextMusic();
 })
 
 function prevMusic() {
@@ -59,6 +67,15 @@ function prevMusic() {
     playMusic();
     isPlayingNow()
 }
+
+// next function
+
+
+next.addEventListener('click', () => {
+    nextMusic();
+})
+
+
 function nextMusic() {
     player.next();
     let music = player.getMusic();
@@ -66,6 +83,8 @@ function nextMusic() {
     playMusic();
     isPlayingNow()
 }
+
+// arrangement of music
 
 function calculateTime(allSeconds) {
     const minute = Math.floor(allSeconds / 60);
@@ -75,6 +94,8 @@ function calculateTime(allSeconds) {
     return result;
 
 }
+
+
 
 audio.addEventListener('loadedmetadata', () => {
     duration.textContent = calculateTime(audio.duration);
@@ -86,10 +107,14 @@ audio.addEventListener('timeupdate', () => {
     currentTime.textContent = calculateTime(progressBar.value);
 })
 
+// progress bar
+
 progressBar.addEventListener('input', () => {
     currentTime.textContent = calculateTime(progressBar.value)
     audio.currentTime = progressBar.value
 })
+
+// vulume-bar
 
 let soundStatus = "voice";
 
@@ -128,6 +153,8 @@ if (volumeBar.value === 0) {
 
 }
 
+// listMusic display
+
 function displayMusicList(list) {
     for (let i = 0; i < list.length; i++) {
         let liTag = `
@@ -151,6 +178,8 @@ function displayMusicList(list) {
     }
 }
 
+// list music function plugins
+
 function selectedMusic(li) {
     player.index = li.getAttribute("li-index");
     displayMusic(player.getMusic());
@@ -169,6 +198,8 @@ function isPlayingNow() {
         }
     }
 }
+
+// borders edit
 
 function myFunction() {
     const list = document.querySelector(".container").classList;

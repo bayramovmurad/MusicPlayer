@@ -32,9 +32,7 @@ body{
   justify-content: space-between;
   color: white;
 }
-/* #play, #prev, #next{
-  background: #A9A9A9;
-} */
+
 #prev, #next{
   width: 35px;
   height: 35px;
